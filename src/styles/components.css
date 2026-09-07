@@ -1,0 +1,499 @@
+/* ---------------------------------------------------------------------- */
+/* Slide chrome                                                            */
+/* ---------------------------------------------------------------------- */
+
+.slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: var(--stage-pad);
+  display: flex;
+  flex-direction: column;
+  background: var(--gradient-1);
+  overflow: hidden;
+}
+
+.slide__grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.slide__kicker {
+  font-family: var(--font-display);
+  font-size: var(--fs-kicker);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  margin-bottom: clamp(14px, 2vh, 28px);
+}
+
+.slide__content {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.slide__source {
+  position: relative;
+  font-size: 0.62rem;
+  letter-spacing: 0.03em;
+  color: var(--paper-dim);
+  opacity: 0.45;
+  margin-top: 10px;
+}
+
+.slide--warm {
+  background: var(--gradient-2);
+}
+
+.slide--flat {
+  background: var(--gradient-3);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Kinetic text                                                            */
+/* ---------------------------------------------------------------------- */
+
+.kinetic-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+.kinetic-text__word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.kinetic-text__word {
+  display: inline-block;
+  transform: translateY(105%);
+  animation: word-up 700ms var(--ease-out) both;
+  animation-delay: var(--delay);
+}
+
+@keyframes word-up {
+  to {
+    transform: translateY(0);
+  }
+}
+
+.no-motion .kinetic-text__word {
+  animation: none;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Stat counter                                                            */
+/* ---------------------------------------------------------------------- */
+
+.stat-counter {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Salary card                                                             */
+/* ---------------------------------------------------------------------- */
+
+.salary-card {
+  border-left: 2px solid var(--accent-amber);
+  padding-left: 20px;
+}
+
+.salary-card__range {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+.salary-card__note {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+  margin-top: 6px;
+  max-width: 32ch;
+}
+
+.salary-card__source {
+  font-size: 0.65rem;
+  opacity: 0.5;
+  margin-top: 8px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Alumni card                                                             */
+/* ---------------------------------------------------------------------- */
+
+.alumni-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.02);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.alumni-card__body {
+  min-width: 0;
+}
+
+.alumni-card__achievement {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.alumni-card__initial {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-amber), var(--accent-rose));
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alumni-card__name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-body);
+}
+
+.alumni-card__role {
+  font-size: var(--fs-small);
+  color: var(--paper);
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.alumni-card__meta {
+  font-size: 0.68rem;
+  color: var(--paper-dim);
+  opacity: 0.65;
+  margin-top: 2px;
+}
+
+.alumni-card__achievement {
+  font-size: 0.72rem;
+  color: var(--accent-cyan);
+  margin-top: 6px;
+}
+
+.alumni-card__salary {
+  font-family: var(--font-display);
+  font-size: var(--fs-body);
+  color: var(--accent-amber);
+  margin-top: 6px;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Career card                                                             */
+/* ---------------------------------------------------------------------- */
+
+.career-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.career-card__headline {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  font-weight: 700;
+  max-width: 16ch;
+}
+
+.career-card__salary {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-lg);
+  font-weight: 700;
+  color: var(--accent-amber);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.career-card__salary-note {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--paper-dim);
+}
+
+.career-card__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.career-card__roles li {
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: var(--fs-small);
+}
+
+.career-card__examples {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.career-card__example {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  font-size: var(--fs-small);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+
+.career-card__example-name {
+  font-weight: 700;
+}
+
+.career-card__example-role {
+  opacity: 0.75;
+}
+
+.career-card__example-salary {
+  margin-left: auto;
+  color: var(--accent-amber);
+  font-family: var(--font-display);
+}
+
+.track-source {
+  font-size: 0.62rem;
+  opacity: 0.45;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Company wall                                                            */
+/* ---------------------------------------------------------------------- */
+
+.company-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.company-wall__item {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.company-wall__company {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+}
+
+.company-wall__sector {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-amber);
+  margin: 4px 0 8px;
+}
+
+.company-wall__detail,
+.company-wall__project,
+.company-wall__note,
+.company-wall__location {
+  font-size: 0.72rem;
+  color: var(--paper-dim);
+  margin-top: 3px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* CTA                                                                     */
+/* ---------------------------------------------------------------------- */
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.cta__primary {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  font-weight: 700;
+  color: var(--accent-amber);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent-amber);
+  padding-bottom: 2px;
+}
+
+.cta__socials {
+  display: flex;
+  gap: 16px;
+  font-size: var(--fs-small);
+  opacity: 0.85;
+}
+
+.cta__socials a {
+  text-decoration: none;
+}
+
+.cta__giveaway {
+  margin-top: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cta__giveaway-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--fs-body);
+}
+
+.cta__giveaway-detail {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Video card                                                              */
+/* ---------------------------------------------------------------------- */
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+}
+
+.video-card__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  max-height: 46vh;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #000;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.video-card__iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-card__poster {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-card__poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.55));
+}
+
+.video-card__play {
+  position: relative;
+  z-index: 1;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(245, 243, 238, 0.92);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  padding-left: 4px;
+  transition: transform 200ms ease;
+}
+
+.video-card__poster:hover .video-card__play {
+  transform: scale(1.08);
+}
+
+.video-card__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(10, 10, 12, 0.7);
+  color: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.68rem;
+  z-index: 2;
+}
+
+.video-card__caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.video-card__label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent-amber);
+}
+
+.video-card__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body);
+}
+
+.video-card__title {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+  font-style: italic;
+}
+
+.video-card__yt-link {
+  margin-top: 4px;
+  font-size: 0.7rem;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  width: fit-content;
+}

@@ -1,0 +1,363 @@
+/* Generic layout utilities shared across slide implementations. */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  gap: clamp(14px, 2.4vh, 28px);
+}
+
+.hero--split {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 64px);
+}
+
+.hero__col {
+  flex: 1;
+  min-width: 0;
+}
+
+.display-xl {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-xl);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-lg);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.subline {
+  font-size: var(--fs-body-lg);
+  color: var(--paper-dim);
+  max-width: 56ch;
+  line-height: 1.4;
+}
+
+.accent {
+  color: var(--accent-amber);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.6vw, 36px);
+  flex: 1;
+  min-height: 0;
+}
+
+/* Flow row: SKILL -> ROLE -> INDUSTRY -> COMPANY -> EARNING style diagrams */
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1.6vw, 20px);
+  flex-wrap: wrap;
+}
+
+.flow-row__step {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(0.85rem, 1.3vw, 1.3rem);
+  letter-spacing: 0.02em;
+  padding: 10px 18px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+}
+
+.flow-row__arrow {
+  opacity: 0.4;
+  font-size: 1.2rem;
+}
+
+/* Category grid (Screen 05) */
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1.6vw, 22px);
+  align-content: center;
+  flex: 1;
+}
+
+.category-grid__item {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 2.6vw, 2.4rem);
+  color: var(--paper-dim);
+  opacity: 0.35;
+  transition: opacity 400ms ease, color 400ms ease;
+}
+
+.category-grid__item--in {
+  opacity: 1;
+  color: var(--paper);
+}
+
+/* Wall grid (alumni wall / company wall containers) */
+
+.wall-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.wall-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 12px;
+  height: 100%;
+  overflow: hidden;
+  animation: fade-in 500ms ease both;
+}
+
+@media (max-width: 900px) {
+  .wall-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .two-col,
+  .three-col,
+  .hero--split {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}
+
+/* Proof tiers (Screen 15) */
+
+.tier-row {
+  display: flex;
+  gap: clamp(16px, 3vw, 40px);
+  flex: 1;
+  align-items: stretch;
+}
+
+.tier-block {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: clamp(16px, 2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tier-block__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-display-md);
+  font-weight: 700;
+  color: var(--accent-amber);
+}
+
+.tier-block__example {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+}
+
+.tier-block__example-name {
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.tier-block__example-role {
+  font-size: var(--fs-small);
+  opacity: 0.75;
+}
+
+.tier-block__example-amount {
+  font-family: var(--font-display);
+  color: var(--accent-amber);
+  font-size: var(--fs-body-lg);
+  margin-top: 4px;
+}
+
+/* Geography (Screen 16) */
+
+.geo-row {
+  display: flex;
+  gap: clamp(20px, 3vw, 48px);
+  flex: 1;
+}
+
+.geo-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.geo-col__label {
+  font-family: var(--font-display);
+  font-size: var(--fs-kicker);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+
+.geo-item {
+  border-left: 2px solid var(--line-strong);
+  padding-left: 14px;
+}
+
+.geo-item__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.geo-item__loc {
+  color: var(--accent-amber);
+  font-size: var(--fs-small);
+}
+
+.geo-item__note {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+  margin-top: 2px;
+}
+
+/* Pathways (Screen 17) */
+
+.pathway-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.4vw, 32px);
+  flex: 1;
+}
+
+.pathway-col {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: clamp(16px, 2vw, 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pathway-col__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-body-lg);
+  color: var(--accent-amber);
+}
+
+.pathway-col__flow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-small);
+}
+
+.pathway-col__flow span {
+  opacity: 0.8;
+}
+
+.pathway-col__example {
+  margin-top: auto;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  font-size: var(--fs-small);
+}
+
+/* Card grid for career-track screens with video */
+
+.career-split {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(24px, 3.2vw, 56px);
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .career-split,
+  .pathway-row,
+  .tier-row,
+  .geo-row {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+}
+
+/* Stat row (world changed / why icat) */
+
+.stat-row {
+  display: flex;
+  gap: clamp(24px, 4vw, 56px);
+  flex-wrap: wrap;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-block__value {
+  font-size: var(--fs-display-lg);
+}
+
+.stat-block__label {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+  max-width: 24ch;
+}
+
+.quote-block {
+  border-left: 2px solid var(--accent-cyan);
+  padding-left: 18px;
+  max-width: 60ch;
+}
+
+.quote-block__text {
+  font-size: var(--fs-body-lg);
+  line-height: 1.4;
+}
+
+.quote-block__source {
+  margin-top: 8px;
+  font-size: 0.68rem;
+  opacity: 0.55;
+}
+
+.badge-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.badge {
+  font-size: var(--fs-body);
+  padding: 10px 16px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  width: fit-content;
+}

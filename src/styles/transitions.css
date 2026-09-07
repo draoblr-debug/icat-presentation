@@ -1,0 +1,81 @@
+/* Each transition TYPE is fixed per-slide (see slideRegistry.js); direction
+   (--dir: 1 = forward/next, -1 = backward/prev) is supplied inline. */
+
+.slide-enter--crossfade {
+  animation: fade-in 650ms var(--ease-out) both;
+}
+
+.slide-enter--zoom {
+  animation: zoom-in 700ms var(--ease-out) both;
+}
+
+.slide-enter--push {
+  animation: push-in 650ms var(--ease-inout) both;
+}
+
+.slide-enter--vertical {
+  animation: vertical-in 650ms var(--ease-inout) both;
+}
+
+.slide-enter--mask {
+  animation: mask-in 750ms var(--ease-inout) both;
+}
+
+.slide-enter--split {
+  animation: mask-in 750ms var(--ease-inout) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes push-in {
+  from {
+    opacity: 0.85;
+    transform: translateX(calc(var(--dir) * 100%));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+
+@keyframes vertical-in {
+  from {
+    opacity: 0.85;
+    transform: translateY(calc(var(--dir) * 100%));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mask-in {
+  from {
+    clip-path: inset(0 calc(50% + 50% * var(--dir)) 0 calc(50% - 50% * var(--dir)));
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.no-motion {
+  animation: none !important;
+}
