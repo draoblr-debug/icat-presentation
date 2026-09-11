@@ -1,6 +1,7 @@
 import Slide from '../components/Slide.jsx'
 import KineticText from '../components/KineticText.jsx'
 import VideoCard from '../components/VideoCard.jsx'
+import ImagePlaceholder from '../components/ImagePlaceholder.jsx'
 import { careerTracks, featuredVideos, sources } from '../data/presentation.js'
 
 export default function FilmSlide() {
@@ -13,6 +14,7 @@ export default function FilmSlide() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 22 }}>
             {track.examples.map((ex) => (
               <div key={ex.name} className="alumni-card" style={{ display: 'block' }}>
+                <ImagePlaceholder src={ex.photo} alt={ex.name} kind="photo" aspect="1 / 1" className="alumni-card__photo" />
                 <div className="alumni-card__name">{ex.name}</div>
                 <div className="alumni-card__role">{ex.role}</div>
                 <div className="alumni-card__meta">

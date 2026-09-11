@@ -1,8 +1,18 @@
+import ImagePlaceholder from './ImagePlaceholder.jsx'
+
 export default function CompanyWall({ items }) {
   return (
     <div className="company-wall">
       {items.map((c) => (
         <div className="company-wall__item" key={c.company + c.alumnus}>
+          <ImagePlaceholder
+            src={c.logo}
+            alt={`${c.company} logo`}
+            kind="logo"
+            aspect="3 / 1"
+            note={`${c.company} logo`}
+            className="company-wall__logo"
+          />
           <div className="company-wall__company">{c.company}</div>
           <div className="company-wall__sector">{c.sector}</div>
           <div className="company-wall__detail">

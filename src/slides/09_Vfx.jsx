@@ -1,5 +1,6 @@
 import Slide from '../components/Slide.jsx'
 import KineticText from '../components/KineticText.jsx'
+import ImagePlaceholder from '../components/ImagePlaceholder.jsx'
 import { careerTracks, sources } from '../data/presentation.js'
 
 export default function VfxSlide() {
@@ -13,10 +14,24 @@ export default function VfxSlide() {
             Verified entry-level range: <span className="accent">{track.salaryRange}</span> — with a
             clear path to senior and global studio roles.
           </p>
+          {/*
+            Mr. David's specific note here: run a recognisable industry VFX
+            reference (he named Baahubali — "Bahubali everyone loves",
+            an instant emotional hook) alongside ICAT's own render/showreel
+            work, so the audience's excitement transfers onto ICAT's actual
+            standard rather than staying attached only to the borrowed clip.
+          */}
+          <ImagePlaceholder
+            kind="video"
+            aspect="16 / 9"
+            note='Reference VFX reel: a well-known breakdown (e.g. Baahubali) cut together with ICAT alumni/student showreel work — local video file for offline playback.'
+            className="vfx-reference-slot"
+          />
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {track.seniorProof.map((p) => (
             <div key={p.name} className="alumni-card" style={{ display: 'block' }}>
+              <ImagePlaceholder src={p.photo} alt={p.name} kind="photo" aspect="1 / 1" className="alumni-card__photo" />
               <div className="alumni-card__name">{p.name}</div>
               <div className="alumni-card__role">
                 {p.role} · {p.company}

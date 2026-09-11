@@ -1,7 +1,17 @@
+import ImagePlaceholder from './ImagePlaceholder.jsx'
+
 export default function CareerCard({ track }) {
   if (!track) return null
   return (
     <div className="career-card">
+      <ImagePlaceholder
+        src={track.heroImage}
+        alt={track.label}
+        kind="poster"
+        aspect="16 / 10"
+        note={track.posterNote}
+        className="career-card__hero"
+      />
       {track.salaryRange && (
         <div className="career-card__salary">
           {track.salaryRange}

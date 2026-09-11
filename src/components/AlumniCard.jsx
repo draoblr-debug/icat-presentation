@@ -1,8 +1,14 @@
+import ImagePlaceholder from './ImagePlaceholder.jsx'
+
 export default function AlumniCard({ alumnus }) {
-  const { name, course, role, company, location, salary, achievement } = alumnus
+  const { name, course, role, company, location, salary, achievement, photo } = alumnus
   return (
     <div className="alumni-card">
-      <div className="alumni-card__initial" aria-hidden="true">{name.charAt(0)}</div>
+      {photo ? (
+        <ImagePlaceholder src={photo} alt={name} kind="photo" aspect="1 / 1" className="alumni-card__photo" />
+      ) : (
+        <div className="alumni-card__initial" aria-hidden="true">{name.charAt(0)}</div>
+      )}
       <div className="alumni-card__body">
         <div className="alumni-card__name">{name}</div>
         {(role || company) && (

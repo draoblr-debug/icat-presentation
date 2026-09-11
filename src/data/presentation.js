@@ -161,7 +161,18 @@ export const d2aLibrary = [
     url: 'https://www.youtube.com/shorts/UJYGw4w4CRY',
     category: 'vfx',
   },
-].map((v) => ({ ...v, youtubeId: youtubeId(v.url), thumbnail: `https://img.youtube.com/vi/${youtubeId(v.url)}/hqdefault.jpg` }))
+].map((v) => ({
+  ...v,
+  youtubeId: youtubeId(v.url),
+  thumbnail: `https://img.youtube.com/vi/${youtubeId(v.url)}/hqdefault.jpg`,
+  // Mr. David (review call, 2026-09-11): the deck must play "without
+  // internet" — venues often have none during the seminar. Long-term this
+  // means dropping in a local video file per clip (path relative to
+  // /public, or a base64 data URI for a short cut-down) so VideoCard can
+  // play it offline instead of hitting the YouTube iframe. `null` until a
+  // presenter supplies the actual file.
+  localSrc: null,
+}))
 
 function fromLibrary(key) {
   const v = d2aLibrary.find((x) => x.key === key)
@@ -185,6 +196,21 @@ export const featuredVideos = {
 // (2021–24 and 2025–26 sheets), NOT the illustrative figures in the original
 // brief. Every number below traces to a named, dated placement record.
 // ---------------------------------------------------------------------------
+
+// `heroImage: null` + `posterNote` on every track below: Mr. David wants a
+// full-bleed reference image per course slide ("Idhu TV friends, reference"
+// / "inga image potta andha idhu communicate aagum" — an image there makes
+// it communicate). posterNote captures what he described that image as.
+// See IMAGE_VIDEO_NOTES.md for the complete brief.
+const heroImageNotes = {
+  design: 'Full-bleed poster/album-style spread of graphic design + advertising work — logos, posters, brand campaigns (he specifically referenced building a poster "album booklet" of design work).',
+  gaming: 'Screenshot or render from a shipped student/alumni game (e.g. Sigma Games titles on Xbox/Switch) — actual gameplay or key art, not stock imagery.',
+  vfx: 'A high-quality VFX/3D render or making-of still. He referenced Baahubali as an emotional touchstone the audience already responds to — pair one recognisable industry VFX reference with ICAT-produced/alumni work so the standard reads as "ours," not borrowed.',
+  film: 'Behind-the-scenes still or key frame from an alumni production (e.g. Amol Patil\'s "Udaala") — a camera-on-set or cinema-still image.',
+  uiux: 'App/product UI screen mockup — he was explicit that "UI UX na UI app kku photos irukkum" (UI/UX needs app screenshots, not generic graphic-design imagery).',
+  fashion: 'Ramp-walk / fashion show photography — he asked for this directly ("ramp walk pannuvanga thane, edhadhu ramp walk video irundha adha run pannidalam"): a runway photo, ideally with a runway video available as a secondary asset.',
+  photography: 'A strong portfolio shot by an alumnus (e.g. Hricthaas Muhammad / Snaptraits) — product or commercial photography sample.',
+}
 
 export const careerTracks = {
   design: {
@@ -307,11 +333,26 @@ export const careerTracks = {
   },
 }
 
+for (const key of Object.keys(careerTracks)) {
+  careerTracks[key].heroImage = null
+  careerTracks[key].posterNote = heroImageNotes[key] ?? null
+}
+
 // ---------------------------------------------------------------------------
 // ALUMNI OUTCOME WALL (Screen 14)
 // ---------------------------------------------------------------------------
 
-export const alumniWall = [
+// `photo: null` placeholders below are intentional (see DATA INTEGRITY
+// POLICY at the top of this file). Mr. David asked specifically for a real
+// photo per alumnus wherever one exists — "Amar Patel photo edukanum",
+// i.e. pull a professional/LinkedIn headshot for each named alumnus rather
+// than showing only initials. AlumniCard renders an ImagePlaceholder until
+// `photo` is filled with a base64 data URI or a verified image path.
+function withPhotoSlot(list) {
+  return list.map((a) => ({ photo: null, ...a }))
+}
+
+export const alumniWall = withPhotoSlot([
   { name: 'Hricthaas Muhammad', course: 'UG Media Technology', role: 'Photographer & Designer', company: 'Snaptraits', location: 'Bangalore', salary: '₹29,100/mo' },
   { name: 'Jaheer Abbas', course: 'Multimedia', role: 'UI/UX Designer', company: 'Fox8 Studios', location: 'Bangalore', salary: '₹23,330/mo' },
   { name: 'Mohithkanna S.S', course: 'Multimedia', role: '3D Artist', company: 'Colad Cloud', location: 'Bangalore', salary: '₹33,333/mo' },
@@ -329,7 +370,7 @@ export const alumniWall = [
   { name: 'Govardhan D Gosavi', course: 'Game Development, 2011', role: 'Co-Founder', company: 'Sigma Games', achievement: 'Shipped titles to Xbox & Nintendo Switch; Best Graphics award, Scotland' },
   { name: 'Arpith Scindhia', course: 'Animation, 2012', role: 'VP of Design', company: 'Delhivery' },
   { name: 'Shashidhar H Mahesh', course: 'Animation, 2014', role: 'Senior Game Artist', company: 'Sumo Digital' },
-]
+])
 
 // ---------------------------------------------------------------------------
 // ₹ PROOF TIERS (Screen 15) — only tiers with a verified example render.
@@ -422,17 +463,21 @@ export const whyIcat = {
 // CURRENT INDUSTRY / COMPANY PROOF (Screen 19)
 // ---------------------------------------------------------------------------
 
+// `logo: null` placeholders below are intentional (see DATA INTEGRITY
+// POLICY). Mr. David: company names alone don't "communicate" — each tile
+// needs the real company logo so recruiters/brands are instantly
+// recognisable at a glance from the back of the room.
 export const companyWall = [
-  { company: 'DNEG', sector: 'VFX', alumnus: 'Ruchi Rikta', project: 'The Last of Us · Dune: Part Two · Kalki 2898 AD' },
-  { company: 'Delhivery', sector: 'Design', alumnus: 'Arpith Scindhia', role: 'VP of Design' },
-  { company: 'ACKO', sector: 'Video Production', alumnus: 'Arjun Reddy', role: 'Senior Manager' },
-  { company: 'EY GDS', sector: 'Brand & Marketing', alumnus: 'Vineeth Krishnan', role: 'Art Director' },
-  { company: 'NetBramha Studios', sector: 'Gaming / Animation', alumnus: 'Varsha T', role: 'Illustrator & Motion Designer' },
-  { company: 'Sigma Games', sector: 'Gaming', alumnus: 'Govardhan D Gosavi', role: 'Co-Founder', note: 'Shipped to Xbox & Nintendo Switch' },
-  { company: 'Any Motion Studios', sector: 'Motion / Advertising', alumnus: 'Zeeshan J', role: 'Founder', note: 'Adobe vendor partner' },
-  { company: 'Monsters Aliens Robots Zombies', sector: 'VFX', alumnus: 'Yash Gowda', role: 'Partner & Global Head of VFX', location: 'Toronto, Canada' },
-  { company: 'Fox8 Studios', sector: 'UI/UX', alumnus: 'Jaheer Abbas', role: 'UI/UX Designer' },
-  { company: 'Tesseract Experience', sector: 'Advertising', alumnus: 'Bhagvanth Prasad', role: 'National Creative Director' },
+  { company: 'DNEG', sector: 'VFX', alumnus: 'Ruchi Rikta', project: 'The Last of Us · Dune: Part Two · Kalki 2898 AD', logo: null },
+  { company: 'Delhivery', sector: 'Design', alumnus: 'Arpith Scindhia', role: 'VP of Design', logo: null },
+  { company: 'ACKO', sector: 'Video Production', alumnus: 'Arjun Reddy', role: 'Senior Manager', logo: null },
+  { company: 'EY GDS', sector: 'Brand & Marketing', alumnus: 'Vineeth Krishnan', role: 'Art Director', logo: null },
+  { company: 'NetBramha Studios', sector: 'Gaming / Animation', alumnus: 'Varsha T', role: 'Illustrator & Motion Designer', logo: null },
+  { company: 'Sigma Games', sector: 'Gaming', alumnus: 'Govardhan D Gosavi', role: 'Co-Founder', note: 'Shipped to Xbox & Nintendo Switch', logo: null },
+  { company: 'Any Motion Studios', sector: 'Motion / Advertising', alumnus: 'Zeeshan J', role: 'Founder', note: 'Adobe vendor partner', logo: null },
+  { company: 'Monsters Aliens Robots Zombies', sector: 'VFX', alumnus: 'Yash Gowda', role: 'Partner & Global Head of VFX', location: 'Toronto, Canada', logo: null },
+  { company: 'Fox8 Studios', sector: 'UI/UX', alumnus: 'Jaheer Abbas', role: 'UI/UX Designer', logo: null },
+  { company: 'Tesseract Experience', sector: 'Advertising', alumnus: 'Bhagvanth Prasad', role: 'National Creative Director', logo: null },
 ]
 
 // ---------------------------------------------------------------------------
