@@ -27,10 +27,10 @@
   top: var(--stage-pad);
   left: var(--stage-pad);
   z-index: 3;
-  background: var(--paper);
-  padding: 8px 14px;
+  background: var(--logo-chip);
+  padding: 10px 16px;
   border-radius: var(--radius-sm);
-  opacity: 0.96;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
 }
 
 .slide__kicker {
@@ -40,8 +40,9 @@
   text-transform: uppercase;
   color: var(--accent-amber);
   /* Clears the top-left logo (.slide__logo), which shares the slide's
-     top-left corner and no longer sits inline with the kicker. */
-  margin-top: calc(clamp(40px, 5.6vw, 64px) + 16px);
+     top-left corner and no longer sits inline with the kicker. Matches
+     .brand-logo's height clamp plus the chip's own vertical padding. */
+  margin-top: calc(clamp(44px, 6vw, 70px) + 20px + 16px);
   margin-bottom: clamp(14px, 2vh, 28px);
 }
 
@@ -649,8 +650,10 @@
 
 .brand-logo {
   /* Sized for .slide__logo (top-left, present on every slide for the
-     whole presentation per review feedback) — the only current use. */
-  height: clamp(40px, 5.6vw, 64px);
+     whole presentation per review feedback) — the only current use.
+     Height-only clamp; width follows the PNG's own ~2.5:1 ratio
+     (seal + wordmark lockup, icat-college-logo.png). */
+  height: clamp(44px, 6vw, 70px);
   width: auto;
   display: block;
 }

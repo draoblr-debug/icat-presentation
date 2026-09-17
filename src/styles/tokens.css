@@ -5,6 +5,10 @@
   --ink-3: #1c1c22;
   --paper: #f5f3ee;
   --paper-dim: #cfcdc6;
+  /* Champagne chip behind the ICAT logo (top-left, every slide) — warm and
+     classy against the dark stage, and picks up the logo's own gold seal
+     ring rather than fighting its navy/red/gold with plain white. */
+  --logo-chip: #ecdfc0;
   --line: rgba(245, 243, 238, 0.14);
   --line-strong: rgba(245, 243, 238, 0.28);
 
