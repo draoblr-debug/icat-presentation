@@ -291,10 +291,31 @@
 .career-split {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
+  /* Explicit 1fr row: CSS Grid's default "auto" row sizing lets each
+     column's natural content height set the row's height, ignoring this
+     container's own (flex-derived) height — so a column with more
+     content than fits (the text + CareerCard column here, independent
+     of anything video-related) was silently pushing the whole row,
+     including the video column next to it, taller than the slide. 1fr
+     ties the row to the space actually available instead. */
+  grid-template-rows: 1fr;
   gap: clamp(24px, 3.2vw, 56px);
   flex: 1;
   min-height: 0;
-  align-items: center;
+  /* start, not center: the text + CareerCard column (Gaming/Design/
+     Photography/UI-UX) can be taller than this row on some slides — a
+     pre-existing content-sizing issue independent of today's video
+     work. Top-aligning means any overflow spills off the bottom only,
+     so the headline stays visible instead of both edges clipping
+     symmetrically. The overflow itself (CareerCard's content wanting
+     more room than the slide has) still needs a real fix separately —
+     trimming copy or shrinking the poster placeholder — this only
+     stops it from also clipping the top. */
+  align-items: start;
+}
+
+.career-split > * {
+  min-height: 0;
 }
 
 @media (max-width: 900px) {

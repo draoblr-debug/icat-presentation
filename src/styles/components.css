@@ -27,10 +27,10 @@
   top: var(--stage-pad);
   left: var(--stage-pad);
   z-index: 3;
-  background: var(--logo-chip);
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  /* No chip — per feedback, the logo runs straight on the slide
+     background at a larger size instead of sitting on a coloured card. */
+  background: transparent;
+  padding: 0;
 }
 
 .slide__kicker {
@@ -41,8 +41,9 @@
   color: var(--accent-amber);
   /* Clears the top-left logo (.slide__logo), which shares the slide's
      top-left corner and no longer sits inline with the kicker. Matches
-     .brand-logo's height clamp plus the chip's own vertical padding. */
-  margin-top: calc(clamp(44px, 6vw, 70px) + 20px + 16px);
+     .brand-logo's height clamp (no chip padding now — logo sits directly
+     on the slide background). */
+  margin-top: calc(clamp(64px, 8.6vw, 108px) + 16px);
   margin-bottom: clamp(14px, 2vh, 28px);
 }
 
@@ -405,7 +406,6 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 100%;
   min-width: 0;
   /* margin, not transform: it has to participate in layout so the shift
      comes out of this column's own space rather than painting over the
@@ -437,7 +437,16 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: clamp(260px, 30vw, 460px);
+  /* Width + a vh ceiling drive this, deliberately — not a height/flex
+     percentage chain. Several attempts at "fill the column exactly"
+     (flex-grow off a stretched height, then CSS containment on top of
+     that) kept losing to how .career-split's CSS Grid sizes an
+     aspect-ratio item's row track: the frame's intrinsic height kept
+     leaking back into track sizing and pushing the whole card, and
+     sometimes the caption, past the slide. This is simpler and can't
+     enter that loop, at the cost of not being pixel-exact to the
+     column's available height. */
+  max-width: clamp(300px, 36vw, 480px);
   width: 100%;
   min-width: 0;
 }
@@ -446,7 +455,11 @@
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  max-height: 58vh;
+  /* Scaled up from the original 58vh per feedback, but kept well short
+     of the column's full height as a safety margin — see the note on
+     .video-card above for why this isn't driven off the column's exact
+     height. */
+  max-height: 54vh;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #000;
@@ -516,6 +529,7 @@
 .video-card__caption {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
   gap: 2px;
 }
 
@@ -652,8 +666,9 @@
   /* Sized for .slide__logo (top-left, present on every slide for the
      whole presentation per review feedback) — the only current use.
      Height-only clamp; width follows the PNG's own ~2.5:1 ratio
-     (seal + wordmark lockup, icat-college-logo.png). */
-  height: clamp(44px, 6vw, 70px);
+     (seal + wordmark lockup, icat-college-logo.png). Scaled up further
+     now that it runs without a background chip. */
+  height: clamp(64px, 8.6vw, 108px);
   width: auto;
   display: block;
 }
