@@ -76,6 +76,13 @@ export default function VideoCard({ video, label }) {
       <div className="video-card__caption">
         {label && <span className="video-card__label">{label}</span>}
         <span className="video-card__name">{video.name}</span>
+        {(video.role || video.company) && (
+          <span className="video-card__role">
+            {video.role}
+            {video.role && video.company ? ' · ' : ''}
+            {video.company}
+          </span>
+        )}
         <span className="video-card__title">“{video.title}”</span>
         <a
           className="video-card__yt-link"

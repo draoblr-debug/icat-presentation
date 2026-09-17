@@ -18,7 +18,7 @@ export default function PassionSlide() {
             stagger={0.03}
           />
         </div>
-        <div className="hero__col" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div className="hero__col video-card-slot">
           <VideoCard video={featuredVideos.passion} label="D2A · Passion → Profession" />
         </div>
       </div>

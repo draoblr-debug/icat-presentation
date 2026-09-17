@@ -82,6 +82,9 @@ export const d2aLibrary = [
     title: 'Doing What You Love Never Feels Like Work',
     url: 'https://www.youtube.com/shorts/bWZw-NPMjVc',
     category: 'passion',
+    // Verified against alumniWall (ICAT Placement Records, 2021–24).
+    role: 'Senior Game Artist',
+    company: 'Sumo Digital',
   },
   {
     key: 'shashidhar-2',
@@ -96,6 +99,9 @@ export const d2aLibrary = [
     title: 'From ICAT Student to Award-Winning Game Founder',
     url: 'https://www.youtube.com/shorts/Z9_VTNYYdTM',
     category: 'gaming',
+    // Verified against alumniWall (ICAT Placement Records, 2021–24).
+    role: 'Co-Founder',
+    company: 'Sigma Games',
   },
   {
     key: 'govardhan-2',
@@ -124,6 +130,9 @@ export const d2aLibrary = [
     title: 'From Underdog to VP of Design',
     url: 'https://www.youtube.com/shorts/GZ-GYMUhCn4',
     category: 'uiux',
+    // Verified against alumniWall (ICAT Placement Records, 2021–24).
+    role: 'VP of Design',
+    company: 'Delhivery',
   },
   {
     key: 'bhanu',
@@ -131,6 +140,11 @@ export const d2aLibrary = [
     title: 'How an ICAT Student Became a Senior Cinematographer',
     url: 'https://www.youtube.com/shorts/nLeTQrBOxq8',
     category: 'film',
+    // Verified against careerTracks.film examples (D2A Show Brief · ICAT
+    // Alumni Records) — no employer on record, so `company` stays null
+    // rather than being guessed.
+    role: 'Cinematographer',
+    company: null,
   },
   {
     key: 'amol',

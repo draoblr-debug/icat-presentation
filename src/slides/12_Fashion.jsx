@@ -21,20 +21,16 @@ export default function FashionSlide() {
             Design, styling, apparel, brand building, e-commerce and entrepreneurship — fashion
             careers grow into businesses as often as they grow into jobs.
           </p>
-          {/*
-            Mr. David asked for this directly: ramp-walk photography (and a
-            ramp-walk video if one exists in ICAT's showcase footage) as the
-            defining image for this category, plus a short list of real
-            companies known to hire fashion designers (he named Arvind Mills
-            as an example of the kind of reference — verify actual hiring
-            relationships before naming a specific company on-slide).
-          */}
-          <ImagePlaceholder
-            kind="video"
-            aspect="16 / 9"
-            note="Ramp-walk / fashion-show video from an ICAT student showcase — offline local file."
-          />
         </div>
+        {/*
+          Mr. David asked for this directly: ramp-walk photography as the
+          defining image for this category (a ramp-walk video from ICAT's
+          own showcase footage is a good secondary asset — see
+          IMAGE_VIDEO_NOTES.md), plus a short list of real companies known
+          to hire fashion designers (he named Arvind Mills as an example of
+          the kind of reference — verify actual hiring relationships before
+          naming a specific company on-slide).
+        */}
         <ImagePlaceholder
           kind="poster"
           aspect="3 / 4"

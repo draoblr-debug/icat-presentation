@@ -25,12 +25,12 @@
 .slide__logo {
   position: absolute;
   top: var(--stage-pad);
-  right: var(--stage-pad);
+  left: var(--stage-pad);
   z-index: 3;
   background: var(--paper);
-  padding: 6px 10px;
+  padding: 8px 14px;
   border-radius: var(--radius-sm);
-  opacity: 0.92;
+  opacity: 0.96;
 }
 
 .slide__kicker {
@@ -39,6 +39,9 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent-amber);
+  /* Clears the top-left logo (.slide__logo), which shares the slide's
+     top-left corner and no longer sits inline with the kicker. */
+  margin-top: calc(clamp(40px, 5.6vw, 64px) + 16px);
   margin-bottom: clamp(14px, 2vh, 28px);
 }
 
@@ -48,15 +51,6 @@
   display: flex;
   flex-direction: column;
   min-height: 0;
-}
-
-.slide__source {
-  position: relative;
-  font-size: 0.62rem;
-  letter-spacing: 0.03em;
-  color: var(--paper-dim);
-  opacity: 0.45;
-  margin-top: 10px;
 }
 
 .slide--warm {
@@ -398,18 +392,60 @@
 /* Video card                                                              */
 /* ---------------------------------------------------------------------- */
 
+/*
+ * Consistent D2A video placement across every slide that embeds one
+ * (Passion, Gaming, Film, UI/UX): shifted 100px left of the slide's
+ * right edge, scaled up, and vertically centered so the gap above and
+ * below the frame stays equal — per review feedback on 2026-09-17.
+ * Slides wrap <VideoCard> in this instead of an ad-hoc inline style so
+ * the placement can't drift between slides.
+ */
+.video-card-slot {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  min-width: 0;
+  /* margin, not transform: it has to participate in layout so the shift
+     comes out of this column's own space rather than painting over the
+     text column next to it. */
+  margin-right: 100px;
+}
+
+@media (max-width: 1100px) {
+  /* Below this the two-column row no longer has 100px of column width to
+     spare — full offset would start crowding the text next to it, so
+     taper it down instead of holding a fixed value all the way to the
+     900px stacking breakpoint. */
+  .video-card-slot {
+    margin-right: clamp(0px, 6vw, 100px);
+  }
+}
+
+@media (max-width: 900px) {
+  /* Slides stack to a single column below 900px (see slides.css) — the
+     100px left shift only makes sense next to text on a wide row, so
+     drop it rather than crowd the stacked video against its own caption. */
+  .video-card-slot {
+    justify-content: center;
+    margin-right: 0;
+  }
+}
+
 .video-card {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-width: 360px;
+  max-width: clamp(260px, 30vw, 460px);
+  width: 100%;
+  min-width: 0;
 }
 
 .video-card__frame {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  max-height: 46vh;
+  max-height: 58vh;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: #000;
@@ -493,6 +529,12 @@
   font-family: var(--font-display);
   font-weight: 700;
   font-size: var(--fs-body);
+}
+
+.video-card__role {
+  font-size: var(--fs-small);
+  color: var(--paper-dim);
+  opacity: 0.85;
 }
 
 .video-card__title {
@@ -589,17 +631,26 @@
   margin-bottom: 16px;
 }
 
+.vfx-reference-slot {
+  margin-top: 16px;
+}
+
 .company-wall__logo {
   margin-bottom: 8px;
 }
 
 .alumni-card__photo {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
   border-radius: 999px;
   overflow: hidden;
 }
 
 .brand-logo {
-  height: clamp(22px, 3vw, 34px);
+  /* Sized for .slide__logo (top-left, present on every slide for the
+     whole presentation per review feedback) — the only current use. */
+  height: clamp(40px, 5.6vw, 64px);
   width: auto;
   display: block;
 }

@@ -30,19 +30,21 @@ export default function VfxSlide() {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {track.seniorProof.map((p) => (
-            <div key={p.name} className="alumni-card" style={{ display: 'block' }}>
+            <div key={p.name} className="alumni-card">
               <ImagePlaceholder src={p.photo} alt={p.name} kind="photo" aspect="1 / 1" className="alumni-card__photo" />
-              <div className="alumni-card__name">{p.name}</div>
-              <div className="alumni-card__role">
-                {p.role} · {p.company}
-              </div>
-              {p.location && <div className="alumni-card__meta">{p.location}</div>}
-              {p.note && <div className="alumni-card__achievement">{p.note}</div>}
-              {p.credits && (
-                <div style={{ fontSize: '0.68rem', color: 'var(--paper-dim)', marginTop: 8, lineHeight: 1.6 }}>
-                  {p.credits.join(' · ')}
+              <div className="alumni-card__body">
+                <div className="alumni-card__name">{p.name}</div>
+                <div className="alumni-card__role">
+                  {p.role} · {p.company}
                 </div>
-              )}
+                {p.location && <div className="alumni-card__meta">{p.location}</div>}
+                {p.note && <div className="alumni-card__achievement">{p.note}</div>}
+                {p.credits && (
+                  <div style={{ fontSize: '0.68rem', color: 'var(--paper-dim)', marginTop: 8, lineHeight: 1.6 }}>
+                    {p.credits.join(' · ')}
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

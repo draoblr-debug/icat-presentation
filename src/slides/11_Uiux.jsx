@@ -15,7 +15,7 @@ export default function UiuxSlide() {
             <CareerCard track={track} />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div className="video-card-slot">
           <VideoCard video={featuredVideos.uiux} label="D2A · UI/UX" />
         </div>
       </div>

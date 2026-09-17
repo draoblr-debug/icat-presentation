@@ -15,7 +15,7 @@ export default function GamingSlide() {
             <CareerCard track={track} />
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div className="video-card-slot">
           <VideoCard video={featuredVideos.gaming} label="D2A · Gaming" />
         </div>
       </div>
