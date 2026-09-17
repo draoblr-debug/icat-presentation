@@ -8,7 +8,7 @@ export default function CareerCard({ track }) {
         src={track.heroImage}
         alt={track.label}
         kind="poster"
-        aspect="16 / 10"
+        aspect="16 / 7"
         note={track.posterNote}
         className="career-card__hero"
       />

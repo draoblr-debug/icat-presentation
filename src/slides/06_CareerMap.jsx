@@ -17,7 +17,7 @@ export default function CareerMapSlide() {
         </div>
         <p className="subline">
           A creative course is not the end of the journey — it's the first link in a chain that
-          ends in a real job, at a real company, earning real money.
+          ends in a real job, at a real company.
         </p>
       </div>
     </Slide>

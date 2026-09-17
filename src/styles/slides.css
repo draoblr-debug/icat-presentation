@@ -10,7 +10,13 @@
 
 .hero--split {
   flex-direction: row;
-  align-items: center;
+  /* flex-start, not center: with the video card scaled up, centering a
+     tall video against a shorter text column left the video sitting
+     almost flush against the slide's top padding (nothing visually
+     separated it from the edge), while the text column — vertically
+     centered too, but shorter — had a comfortable gap above it. Top-
+     aligning both columns gives them the same, consistent top margin. */
+  align-items: flex-start;
   justify-content: space-between;
   gap: clamp(24px, 4vw, 64px);
 }

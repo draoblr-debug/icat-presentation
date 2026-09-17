@@ -518,7 +518,7 @@ export const copy = {
   },
   ecosystem: {
     headline: 'CREATIVE CAREERS ARE EVERYWHERE.',
-    categories: ['DESIGN', 'FILM', 'VFX', 'ANIMATION', 'GAMING', 'FASHION', 'PHOTOGRAPHY', 'ADVERTISING', 'UI/UX', '3D / DIGITAL ART'],
+    categories: ['DESIGN', 'VFX', 'ANIMATION', 'GAMING', 'FASHION', 'PHOTOGRAPHY', 'UI/UX'],
   },
   careerMap: {
     headline: 'A SKILL BECOMES A CAREER.',

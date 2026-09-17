@@ -221,7 +221,7 @@
 .career-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 10px;
 }
 
 .career-card__headline {
@@ -233,7 +233,13 @@
 
 .career-card__salary {
   font-family: var(--font-display);
-  font-size: var(--fs-display-lg);
+  /* Was --fs-display-lg (a slide-headline size, up to 5.6rem) — inside
+     this small card that routinely wrapped to two lines and was the
+     actual cause of CareerCard's content overflowing its column on
+     Gaming/Design/Photography, not the poster placeholder or anything
+     video-related. --fs-display-md is still a bold, prominent stat, at
+     a size that actually fits a card. */
+  font-size: var(--fs-display-md);
   font-weight: 700;
   color: var(--accent-amber);
   display: flex;
@@ -643,7 +649,7 @@
 }
 
 .career-card__hero {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .vfx-reference-slot {
